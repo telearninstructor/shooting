@@ -46,32 +46,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.bossweapon, function (sprite, ot
 let haha: Sprite = null
 let trash: Sprite = null
 let bossduck: Sprite = null
-let bosshp = 0
 let projectile: Sprite = null
 let spaceship: Sprite = null
-spaceship = sprites.create(img`
-    ..............fff22.............
-    ..............f22dd2............
-    ...............f22dd2...........
-    222............f22222f..........
-    22222.........ff222222ffffff....
-    .222d2.....fff22222222222222ff..
-    .f22dd2..ff2222222222222222222ff
-    ..f22dfff2222222222222ff2222222f
-    ..f2222222222222222221ff1111222f
-    ..f222222222222222222111111112f.
-    .f222fff222222222222112233222f..
-    .f22f...22d22222222211121312f...
-    f22f.....22dddddf2222111233f....
-    fff........22ddf22d2f1111ff.....
-    .............2f22d2f22222.......
-    ..............fffff.............
-    `, SpriteKind.Player)
-controller.moveSprite(spaceship, 100, 100)
-spaceship.setScale(1, ScaleAnchor.Middle)
-spaceship.setStayInScreen(true)
-info.setScore(0)
-spaceship.setPosition(14, 67)
 scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -194,9 +170,33 @@ scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     `)
+spaceship = sprites.create(img`
+    ..............fff22.............
+    ..............f22dd2............
+    ...............f22dd2...........
+    222............f22222f..........
+    22222.........ff222222ffffff....
+    .222d2.....fff22222222222222ff..
+    .f22dd2..ff2222222222222222222ff
+    ..f22dfff2222222222222ff2222222f
+    ..f2222222222222222221ff1111222f
+    ..f222222222222222222111111112f.
+    .f222fff222222222222112233222f..
+    .f22f...22d22222222211121312f...
+    f22f.....22dddddf2222111233f....
+    fff........22ddf22d2f1111ff.....
+    .............2f22d2f22222.......
+    ..............fffff.............
+    `, SpriteKind.Player)
+controller.moveSprite(spaceship, 100, 100)
+spaceship.setScale(1, ScaleAnchor.Middle)
+spaceship.setStayInScreen(true)
+spaceship.setPosition(14, 67)
 info.setLife(5)
 info.startCountdown(60)
+info.setScore(0)
 let bossout = 0
+let bosshp = 10
 game.onUpdate(function () {
     if (info.score() >= 10 && bossout == 0) {
         scene.setBackgroundImage(img`
@@ -341,7 +341,6 @@ game.onUpdate(function () {
             `, SpriteKind.boss)
         bossduck.setPosition(137, 53)
         bossout = 1
-        bosshp = 10
         bossduck.setScale(5, ScaleAnchor.Middle)
     }
     if (bosshp <= 0) {
