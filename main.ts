@@ -46,6 +46,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.bossweapon, function (sprite, ot
 let haha: Sprite = null
 let trash: Sprite = null
 let bossduck: Sprite = null
+let bosshp = 0
 let projectile: Sprite = null
 let spaceship: Sprite = null
 spaceship = sprites.create(img`
@@ -196,7 +197,6 @@ scene.setBackgroundImage(img`
 info.setLife(5)
 info.startCountdown(60)
 let bossout = 0
-let bosshp = 10
 game.onUpdate(function () {
     if (info.score() >= 10 && bossout == 0) {
         scene.setBackgroundImage(img`
@@ -341,6 +341,7 @@ game.onUpdate(function () {
             `, SpriteKind.boss)
         bossduck.setPosition(137, 53)
         bossout = 1
+        bosshp = 10
         bossduck.setScale(5, ScaleAnchor.Middle)
     }
     if (bosshp <= 0) {
